@@ -70,6 +70,8 @@ jobs:
       - name: Packaging
         run: |
           set -euo pipefail
+  
+          zip --version
 
           # Package shared game data once so every depot receives identical pk3s
           mkdir -p package-stage
