@@ -41,12 +41,12 @@ jobs:
       - name: Add safe directory - https://github.com/actions/checkout/issues/1169
         run: git config --system --add safe.directory /__w/warfork-qfusion/warfork-qfusion
 
-      - name: Download steamworks sdk
-        run: |
-          curl -L https://github.com/Warfork/sdk_internal/raw/refs/heads/main/sdk164.zip --output third-party/steamworks/sdk.zip
-          unzip -P "$SDK_PASSWORD" third-party/steamworks/sdk.zip -d third-party/steamworks
-        env:
-          SDK_PASSWORD: ${{ secrets.SDK_PASSWORD }}
+      # - name: Download steamworks sdk
+      #   run: |
+      #     curl -L https://github.com/Warfork/sdk_internal/raw/refs/heads/main/sdk164.zip --output third-party/steamworks/sdk.zip
+      #     unzip -P "$SDK_PASSWORD" third-party/steamworks/sdk.zip -d third-party/steamworks
+      #   env:
+      #     SDK_PASSWORD: ${{ secrets.SDK_PASSWORD }}
 
       - name: Build
         working-directory: ./source
