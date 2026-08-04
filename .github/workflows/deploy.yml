@@ -14,7 +14,7 @@ jobs:
     with:
       config: 'release'
       package_assets: false
-    secrets: inherit
+    # secrets: inherit
 
   macos:
     uses: ./.github/workflows/macos-build.yml
@@ -22,14 +22,14 @@ jobs:
       config: 'release'
       arch: 'x86_64'
       package_assets: false
-    secrets: inherit
+    # secrets: inherit
 
   windows:
     uses: ./.github/workflows/windows-build.yml
     with:
       config: 'release'
       package_assets: false
-    secrets: inherit
+    # secrets: inherit
 
   # Prepare builds for Steam deployment
   prepare-steam-build:

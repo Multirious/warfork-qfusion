@@ -17,9 +17,9 @@ on:
         type: boolean
         default: true
         required: false
-    secrets:
-      SDK_PASSWORD:
-        required: true
+    # secrets:
+    #   SDK_PASSWORD:
+    #     required: true
 
 jobs:
   windows:
