@@ -37,8 +37,8 @@ jobs:
       - name: Upload assets artifact
         uses: actions/upload-artifact@v4
         with:
-          name: someshit
-          path: package-stage
+          path: package-stage/data0_21pure.pk3
+          archive: false
 
       - name: Sentry Upload
         run: |
