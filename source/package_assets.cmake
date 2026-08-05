@@ -31,8 +31,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   endif()
 else()
   execute_process (COMMAND bash -c "
-    mkdir -p \"${BIN_DIR}/basewf\"
-
+    mkdir -p ${BIN_DIR}/basewf
     files=(
       data0_000_21
       data0_000_21pure
@@ -40,28 +39,11 @@ else()
       data0_21pure
       data1_21pure
     )
-
-    # Sanity check zip version
-    zip --version
-
-    echo \"Preparing assets...\"
-    # Preparing assets for deterministic hash result
-    tempdir=$(mktemp -d)
     for p in \"\${files[@]}\"; do
-      cp -r \"${ASSET_ROOT}/$p\" $tempdir
+      cd \"${ASSET_ROOT}/$p\"
+      zip -r \"${BIN_DIR}/basewf/$p.pk3\" *
+      strip-nondeterminism \"${BIN_DIR}/basewf/$p\"
     done
-    find $tempdir -exec touch -d '1985-10-21 09:00:00' {} \;
-    find $tempdir -type f -exec chmod 644 {} \;
-
-    echo \"Zipping assets...\"
-    for p in \"\${files[@]}\"; do
-      # Use sort to present file deterministically to zip
-      # Force timezone to UTC to avoid confusion
-      cd \"$tempdir/$p\"
-      find . -type f | sort | TZ=UTC zip -X \"${BIN_DIR}/basewf/$p.pk3\" -@ 
-    done
-
-    rm -r $tempdir
   ")
 endif()
 
