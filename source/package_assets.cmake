@@ -42,7 +42,7 @@ else()
     for p in \"\${files[@]}\"; do
       cd \"${ASSET_ROOT}/$p\"
       zip -r \"${BIN_DIR}/basewf/$p.pk3\" *
-      strip-nondeterminism -T 1 \"${BIN_DIR}/basewf/$p.pk3\"
+      strip-nondeterminism -T 0 \"${BIN_DIR}/basewf/$p.pk3\"
     done
   ")
 endif()
